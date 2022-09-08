@@ -11,7 +11,7 @@
 	<groupId>ru.myaccounting</groupId>
 	<artifactId>myaccounting</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>myaccounting</name>
+	<name>app</name>
 	<description>Private accounting</description>
 	<properties>
 		<java.version>17</java.version>
