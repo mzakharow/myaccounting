@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface TransferReposirory extends JpaRepository<Transfer, Long> {
+public interface TransferRepository extends JpaRepository<Transfer, Long> {
 
     List<Transfer> findAllByUserOrderByCreatedDateDesc(User user);
 
