@@ -39,10 +39,6 @@ public class TransferService {
         return transferRepository.save(transfer);
     }
 
-//    public List<Transfer> getAllTransfers() {
-//        return transferRepository.findAllByOrderByCreatedDateDesc();
-//    }
-
     public List<Transfer> getAllTransferForUser(Principal principal) {
         User user = getUserByPrincipal(principal);
         return transferRepository.findAllByUserOrderByCreatedDateDesc(user);
@@ -50,9 +46,7 @@ public class TransferService {
 
     public void deleteTransfer(Long transferId, Principal principal) {
         Transfer transfer = getTransferById(transferId, principal);
-//        Optional<ImageModel> imageModel = imageRepository.findByTransferId(transfer.getId());
         transferRepository.delete(transfer);
-//        imageModel.ifPresent(imageRepository::delete);
     }
 
     public Transfer getTransferById(Long transferId, Principal principal) {
