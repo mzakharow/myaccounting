@@ -1,4 +1,4 @@
-package ru.myaccounting.app.services;
+package ru.myaccounting.app.service;
 
 import ru.myaccounting.app.dto.UserDTO;
 import ru.myaccounting.app.entity.User;
@@ -8,7 +8,6 @@ import ru.myaccounting.app.payload.request.SignupRequest;
 import ru.myaccounting.app.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,14 +15,13 @@ import org.springframework.stereotype.Service;
 import java.security.Principal;
 
 @Service
-public class UserService {
-    public static final Logger LOG = LoggerFactory.getLogger(UserService.class);
+public class UserServiceImpl implements UserService {
+    public static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    @Autowired
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -48,16 +46,18 @@ public class UserService {
 
     public User updateUser(UserDTO userDTO, Principal principal) {
         User user = getUserByPrincipal(principal);
-        user.setName(userDTO.getFirstname());
-        user.setLastname(userDTO.getLastname());
-
+        if (userDTO.getFirstname() != null) {
+            user.setName(userDTO.getFirstname());
+        }
+        if (userDTO.getLastname() != null) {
+            user.setLastname(userDTO.getLastname());
+        }
         return userRepository.save(user);
     }
 
     public User getCurrentUser(Principal principal) {
         return getUserByPrincipal(principal);
     }
-
 
     private User getUserByPrincipal(Principal principal) {
         String username = principal.getName();

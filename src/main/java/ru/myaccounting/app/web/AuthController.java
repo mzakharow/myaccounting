@@ -16,7 +16,7 @@ import ru.myaccounting.app.payload.response.JWTTokenSuccessResponse;
 import ru.myaccounting.app.payload.response.MessageResponse;
 import ru.myaccounting.app.security.JWTTokenProvider;
 import ru.myaccounting.app.security.SecurityConstants;
-import ru.myaccounting.app.services.UserService;
+import ru.myaccounting.app.service.UserService;
 import ru.myaccounting.app.validations.ResponseErrorValidation;
 
 import javax.validation.Valid;

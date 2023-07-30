@@ -1,4 +1,4 @@
-package ru.myaccounting.app.services;
+package ru.myaccounting.app.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,14 +15,12 @@ import java.security.Principal;
 import java.util.List;
 
 @Service
-public class TransferService {
-    public static final Logger LOG = LoggerFactory.getLogger(TransferService.class);
-
+public class TransferServiceImpl implements TransferService {
+    public static final Logger LOG = LoggerFactory.getLogger(TransferServiceImpl.class);
     private final TransferRepository transferRepository;
     private final UserRepository userRepository;
 
-
-    public TransferService(TransferRepository transferRepository, UserRepository userRepository) {
+    public TransferServiceImpl(TransferRepository transferRepository, UserRepository userRepository) {
         this.transferRepository = transferRepository;
         this.userRepository = userRepository;
     }

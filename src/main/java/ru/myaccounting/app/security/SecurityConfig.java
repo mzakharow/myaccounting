@@ -1,6 +1,6 @@
 package ru.myaccounting.app.security;
 
-import ru.myaccounting.app.services.CustomUserDetailsService;
+import ru.myaccounting.app.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
