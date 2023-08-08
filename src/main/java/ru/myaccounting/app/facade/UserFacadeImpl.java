@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.myaccounting.app.dto.UserDTO;
 import ru.myaccounting.app.entity.User;
+import ru.myaccounting.app.payload.request.SignupRequest;
 import ru.myaccounting.app.service.UserService;
 
 import java.security.Principal;
@@ -32,6 +33,10 @@ public class UserFacadeImpl implements UserFacade {
         User userUpdated = userService.updateUser(userDTO, principal);
         UserDTO userDTOUpdated = createUserDTO(userUpdated);
         return userDTOUpdated;
+    }
+
+    public void createUser(SignupRequest signupRequest) {
+        userService.createUser(signupRequest);
     }
 
     private UserDTO createUserDTO(User user) {

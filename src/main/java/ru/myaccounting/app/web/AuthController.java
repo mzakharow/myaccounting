@@ -10,13 +10,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.myaccounting.app.facade.UserFacade;
 import ru.myaccounting.app.payload.request.LoginRequest;
 import ru.myaccounting.app.payload.request.SignupRequest;
 import ru.myaccounting.app.payload.response.JWTTokenSuccessResponse;
 import ru.myaccounting.app.payload.response.MessageResponse;
 import ru.myaccounting.app.security.JWTTokenProvider;
 import ru.myaccounting.app.security.SecurityConstants;
-import ru.myaccounting.app.service.UserService;
 import ru.myaccounting.app.validations.ResponseErrorValidation;
 
 import javax.validation.Valid;
@@ -34,7 +34,7 @@ public class AuthController {
     @Autowired
     private ResponseErrorValidation responseErrorValidation;
     @Autowired
-    private UserService userService;
+    private UserFacade userFacade;
 
     @PostMapping("/signin")
     public ResponseEntity<Object> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
@@ -57,7 +57,7 @@ public class AuthController {
         ResponseEntity<Object> errors = responseErrorValidation.mapValidationService(bindingResult);
         if (!ObjectUtils.isEmpty(errors)) return errors;
 
-        userService.createUser(signupRequest);
+        userFacade.createUser(signupRequest);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
