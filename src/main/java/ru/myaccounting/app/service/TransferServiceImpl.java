@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import ru.myaccounting.app.exceptions.TransferNotFoundException;
 import ru.myaccounting.app.repository.TransferRepository;
 import ru.myaccounting.app.repository.UserRepository;
-import ru.myaccounting.app.dto.TransferDTO;
 
 import java.security.Principal;
 import java.util.List;
@@ -25,13 +24,9 @@ public class TransferServiceImpl implements TransferService {
         this.userRepository = userRepository;
     }
 
-    public Transfer createTransfer(TransferDTO transferDTO, Principal principal) {
+    public Transfer createTransferForUser(Transfer transfer, Principal principal) {
         User user = getUserByPrincipal(principal);
-        Transfer transfer = new Transfer();
         transfer.setUser(user);
-        transfer.setCategory(transferDTO.getCategory());
-        transfer.setSum(transferDTO.getSum());
-        transfer.setComment(transferDTO.getComment());
 
         LOG.info("Saving Transfer for User: {}", user.getEmail());
         return transferRepository.save(transfer);

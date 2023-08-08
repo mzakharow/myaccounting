@@ -42,7 +42,7 @@ public class TransferController {
         return new ResponseEntity<>(transferDTOList, HttpStatus.OK);
     }
 
-    @PostMapping("/{transferId}/delete")
+    @DeleteMapping("/{transferId}/delete")
     public ResponseEntity<MessageResponse> deleteTransfer(@PathVariable("transferId") String transferId, Principal principal) {
         transferFacade.deleteTransfer(transferId, principal);
         return new ResponseEntity<>(new MessageResponse("Transfer was deleted"), HttpStatus.OK);

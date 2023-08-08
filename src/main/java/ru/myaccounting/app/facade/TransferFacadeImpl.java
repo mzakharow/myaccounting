@@ -17,8 +17,11 @@ public class TransferFacadeImpl implements TransferFacade {
     private TransferService transferService;
 
     public TransferDTO transferToTransferDTO(TransferDTO transferDTO, Principal principal) {
-        Transfer transfer = transferService.createTransfer(transferDTO, principal);
-        TransferDTO responseTransferDTO = transferToDTO(transfer);
+        Transfer transfer = new Transfer();
+        transfer.setCategory(transferDTO.getCategory());
+        transfer.setSum(transferDTO.getSum());
+        transfer.setComment(transferDTO.getComment());
+        TransferDTO responseTransferDTO = transferToDTO(transferService.createTransferForUser(transfer, principal));
         return responseTransferDTO;
     }
 
