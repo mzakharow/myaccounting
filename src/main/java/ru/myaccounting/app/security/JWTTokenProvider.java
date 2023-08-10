@@ -35,7 +35,6 @@ public class JWTTokenProvider {
                 .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET)
                 .compact();
-
     }
 
     public boolean validateToken(String token) {

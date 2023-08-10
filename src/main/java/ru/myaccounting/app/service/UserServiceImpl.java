@@ -1,6 +1,5 @@
 package ru.myaccounting.app.service;
 
-import ru.myaccounting.app.dto.UserDTO;
 import ru.myaccounting.app.entity.User;
 import ru.myaccounting.app.entity.enums.ERole;
 import ru.myaccounting.app.exceptions.UserExistException;
@@ -44,14 +43,10 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public User updateUser(UserDTO userDTO, Principal principal) {
+    public User updateUser(String firstName, String lastName, Principal principal) {
         User user = getUserByPrincipal(principal);
-        if (userDTO.getFirstname() != null) {
-            user.setName(userDTO.getFirstname());
-        }
-        if (userDTO.getLastname() != null) {
-            user.setLastname(userDTO.getLastname());
-        }
+        user.setName(firstName);
+        user.setLastname(lastName);
         return userRepository.save(user);
     }
 

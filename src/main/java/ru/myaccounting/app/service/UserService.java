@@ -1,6 +1,5 @@
 package ru.myaccounting.app.service;
 
-import ru.myaccounting.app.dto.UserDTO;
 import ru.myaccounting.app.entity.User;
 import ru.myaccounting.app.payload.request.SignupRequest;
 
@@ -10,7 +9,7 @@ public interface UserService {
 
     User createUser(SignupRequest userIn);
 
-    User updateUser(UserDTO userDTO, Principal principal);
+    User updateUser(String firstName, String lastName, Principal principal);
 
     User getCurrentUser(Principal principal);
 

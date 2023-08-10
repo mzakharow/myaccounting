@@ -17,7 +17,6 @@ public class UserFacadeImpl implements UserFacade {
     private UserService userService;
 
     public UserDTO userToUserDTO(Principal principal) {
-
         User user = userService.getCurrentUser(principal);
         UserDTO userDTO = createUserDTO(user);
         return userDTO;
@@ -30,9 +29,9 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     public UserDTO userUpdate(UserDTO userDTO, Principal principal) {
-        User userUpdated = userService.updateUser(userDTO, principal);
-        UserDTO userDTOUpdated = createUserDTO(userUpdated);
-        return userDTOUpdated;
+        User userUpdated = userService.updateUser(userDTO.getFirstname(), userDTO.getLastname(), principal);
+
+        return createUserDTO(userUpdated);
     }
 
     public void createUser(SignupRequest signupRequest) {
