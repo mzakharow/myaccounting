@@ -30,7 +30,6 @@ public class UserFacadeImpl implements UserFacade {
 
     public UserDTO userUpdate(UserDTO userDTO, Principal principal) {
         User userUpdated = userService.updateUser(userDTO.getFirstname(), userDTO.getLastname(), principal);
-
         return createUserDTO(userUpdated);
     }
 
